@@ -13,4 +13,4 @@ Check out https://blogs.atlassian.com/2013/03/instant-java-provisioning-with-vag
 # Usage
 
 	$ git clone https://github.com/lwndev/confluence-vagrant-install.git && cd confluence-vagrant-install
-	$vagrant up
+	$ vagrant up

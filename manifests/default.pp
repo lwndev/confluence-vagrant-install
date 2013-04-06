@@ -78,7 +78,7 @@ class must-have {
 
   exec {
     "start_confluence_in_background":
-    environment => "STASH_HOME=${confluence_home}",
+    environment => "CONFLUENCE_HOME=${confluence_home}",
     command => "/vagrant/atlassian-confluence-${confluence_version}/bin/start-confluence.sh &",
     cwd => "/vagrant",
     user => "vagrant",
@@ -92,7 +92,7 @@ class must-have {
 
   append_if_no_such_line { motd:
     file => "/etc/motd",
-    line => "Run Confluence with: STASH_HOME=${confluence_home} /vagrant/atlassian-confluence-#{confluence_version}/bin/start-confluence.sh",
+    line => "Run Confluence with: CONFLUENCE_HOME=${confluence_home} /vagrant/atlassian-confluence-${confluence_version}/bin/start-confluence.sh",
     require => Exec["start_confluence_in_background"],
   }
 }

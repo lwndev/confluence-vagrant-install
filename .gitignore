@@ -1,3 +1,4 @@
 .vagrant
 atlassian-confluence-5.1/
-confluence-home/
+confluence-home
+logs

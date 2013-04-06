@@ -34,6 +34,12 @@ class must-have {
     require => Exec["apt-get update 2"],
   }
 
+  file { "confluence.properties":
+    path => "/vagrant/atlassian-confluence-5.1/confluence/WEB-INF/classes/confluence-init.properties",
+    content => "confluence.home=/vagrant/confluence-home",
+    require => Exec["create_confluence_home"],
+  }
+
   exec {
     "accept_license":
     command => "echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections && echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections",

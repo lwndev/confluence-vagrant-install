@@ -3,3 +3,8 @@
 2013-04-06 15:47:44,907 INFO [main] [atlassian.plugin.manager.DefaultPluginManager] init Initialising the plugin system
 2013-04-06 15:47:54,106 INFO [main] [atlassian.plugin.manager.DefaultPluginManager] init Plugin system started in 0:00:09.190
 2013-04-06 15:47:57,381 INFO [main] [com.atlassian.confluence.lifecycle] init Confluence is ready to serve
+2013-04-06 16:20:33,764 INFO [main] [com.atlassian.confluence.lifecycle] contextInitialized Starting Confluence 5.1 [build 4215 based on commit hash 27aa6aff3fb0e9e5138a84da80ecdaa533a08846]
+2013-04-06 16:20:39,869 WARN [main] [atlassian.config.bootstrap.DefaultAtlassianBootstrapManager] init Unable to set up application config: no home set
+2013-04-06 16:20:41,043 INFO [main] [atlassian.plugin.manager.DefaultPluginManager] init Initialising the plugin system
+2013-04-06 16:20:50,076 INFO [main] [atlassian.plugin.manager.DefaultPluginManager] init Plugin system started in 0:00:09.026
+2013-04-06 16:20:53,295 INFO [main] [com.atlassian.confluence.lifecycle] init Confluence is ready to serve

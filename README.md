@@ -1,4 +1,4 @@
-confluence-vagrant-install
+# confluence-vagrant-install
 ===================
 
 A project that uses Vagrant and Puppet to create and boot a VirtualBox VM and then to download and install a copy of Confluence 5.1.

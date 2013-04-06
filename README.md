@@ -7,8 +7,8 @@ Check out https://blogs.atlassian.com/2013/03/instant-java-provisioning-with-vag
 
 # Dependencies
 
-# Vagrant
-# VirtualBox
+1. Vagrant
+2. VirtualBox
 
 # Usage
 

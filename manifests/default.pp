@@ -10,6 +10,9 @@ class must-have {
   include apt
   apt::ppa { "ppa:webupd8team/java": }
 
+  $confluence_home = "/vagrant/confluence-home"
+  $confluence_version = "5.1"
+
   exec { 'apt-get update':
     command => '/usr/bin/apt-get update',
     before => Apt::Ppa["ppa:webupd8team/java"],
@@ -35,8 +38,8 @@ class must-have {
   }
 
   file { "confluence.properties":
-    path => "/vagrant/atlassian-confluence-5.1/confluence/WEB-INF/classes/confluence-init.properties",
-    content => "confluence.home=/vagrant/confluence-home",
+    path => "/vagrant/atlassian-confluence-${confluence_version}/confluence/WEB-INF/classes/confluence-init.properties",
+    content => "confluence.home=${confluence_home}",
     require => Exec["create_confluence_home"],
   }
 
@@ -53,30 +56,30 @@ class must-have {
 
   exec {
     "download_confluence":
-    command => "curl -L http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-5.1.tar.gz | tar zx",
+    command => "curl -L http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${confluence_version}.tar.gz | tar zx",
     cwd => "/vagrant",
     user => "vagrant",
     path    => "/usr/bin/:/bin/",
     require => Exec["accept_license"],
     logoutput => true,
-    creates => "/vagrant/atlassian-confluence-5.1",
+    creates => "/vagrant/atlassian-confluence-${confluence_version}",
   }
 
   exec {
     "create_confluence_home":
-    command => "mkdir -p /vagrant/confluence-home",
+    command => "mkdir -p ${confluence_home}",
     cwd => "/vagrant",
     user => "vagrant",
     path    => "/usr/bin/:/bin/",
     require => Exec["download_confluence"],
     logoutput => true,
-    creates => "/vagrant/confluence-home",
+    creates => "${confluence_home}",
   }
 
   exec {
     "start_confluence_in_background":
-    environment => "STASH_HOME=/vagrant/confluence-home",
-    command => "/vagrant/atlassian-confluence-5.1/bin/start-confluence.sh &",
+    environment => "STASH_HOME=${confluence_home}",
+    command => "/vagrant/atlassian-confluence-${confluence_version}/bin/start-confluence.sh &",
     cwd => "/vagrant",
     user => "vagrant",
     path    => "/usr/bin/:/bin/",
@@ -89,7 +92,7 @@ class must-have {
 
   append_if_no_such_line { motd:
     file => "/etc/motd",
-    line => "Run Confluence with: STASH_HOME=/vagrant/confluence-home /vagrant/atlassian-confluence-5.1/bin/start-confluence.sh",
+    line => "Run Confluence with: STASH_HOME=${confluence_home} /vagrant/atlassian-confluence-#{confluence_version}/bin/start-confluence.sh",
     require => Exec["start_confluence_in_background"],
   }
 }

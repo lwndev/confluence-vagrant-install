@@ -11,7 +11,7 @@ class must-have {
   apt::ppa { "ppa:webupd8team/java": }
 
   $confluence_home = "/vagrant/confluence-home"
-  $confluence_version = "5.1"
+  $confluence_version = "5.1.3"
 
   exec { 'apt-get update':
     command => '/usr/bin/apt-get update',

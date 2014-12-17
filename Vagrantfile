@@ -28,6 +28,11 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
+  config.vm.provision :shell, :inline => <<-EOT
+    dpkg-reconfigure -f noninteractive grub-pc
+    apt-get update && apt-get dist-upgrade -y
+  EOT
+
   config.vm.provision :puppet, :module_path => "modules" do |puppet|
     puppet.manifests_path = "manifests"
     puppet.manifest_file  = "default.pp"
